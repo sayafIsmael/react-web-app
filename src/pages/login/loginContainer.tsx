@@ -1,21 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from "./../../components/NavBar";
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from './../../redux/reducers/rootReducer'
+import {handleLogin} from "./../../redux/actions/auth"
 
 export default function Login() { //props: LoginProps
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [loginOption, setLoginOption] = useState(1)
     const history = useNavigate();
+    const dispatch = useDispatch()
+    
+    const store = useSelector((state: RootState) => {
+        return state.auth;
+    });
 
-    function submitForm(){
+    function submitForm() {
+        dispatch(handleLogin({
+            method: loginOption,
+            email,
+            phone
+        }))
         history('/verification')
     }
 
+    useEffect(()=> {
+        let {email, phone, method} = store
+        setEmail(email)
+        setPhone(phone)
+        setLoginOption(method)
+    },[])
+
     return (
         <React.Fragment>
-            <Navbar/>
+            <Navbar />
             <div className="flex justify-center my-5">
                 <button className={`${loginOption == 1 ? "border-2 border-gray rounded-lg" : "text-gray-md"} py-1 px-3 mr-2`} onClick={() => setLoginOption(1)}>Email</button>
                 <button className={`${loginOption == 2 ? "border-2 border-gray rounded-lg" : "text-gray-md"} py-1 px-3`} onClick={() => setLoginOption(2)}>Phone</button>

@@ -4,6 +4,8 @@ import './App.css';
 import Navbar from "./components/NavBar"
 import LoginPage from "./pages/login/loginContainer"
 import VerificationPage from "./pages/verification"
+import AccountPage from "./pages/account/create"
+import SecureAccountPage from "./pages/account/secure"
 
 import {
   BrowserRouter,
@@ -20,6 +22,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/verification" element={<VerificationPage />} />
+          <Route path="/create-account" element={<AccountPage />} />
+          <Route path="/secure-account" element={<SecureAccountPage />} />
           <Route
             path="*"
             element={<Navigate to="/login" />}

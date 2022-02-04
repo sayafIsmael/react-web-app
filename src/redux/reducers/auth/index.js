@@ -1,21 +1,31 @@
 // **  Initial State
 const initialState = {
-  userData: {}
+  method: 1,
+  email: '',
+  phone: '',
+  verificationCode: '',
+  fullname: '',
+  accountId: ''
 }
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN':
+      console.log(action.data)
       return {
         ...state,
-        userData: action.data,
-        [action.config.storageTokenKeyName]: action[action.config.storageTokenKeyName],
-        [action.config.storageRefreshTokenKeyName]: action[action.config.storageRefreshTokenKeyName]
+        ...action.data
+        // email: action.data.email,
+        // phone: action.data.phone,
+        // method: action.data.method,
+        // fullname: action.data.fullname,
+        // accountId: action.data.accountId,
+        // verificationCode: action.data.verificationCode
       }
     case 'LOGOUT':
       const obj = { ...action }
       delete obj.type
-      return { ...state, userData: {}, ...obj }
+      return { ...state, ...obj }
     default:
       return state
   }

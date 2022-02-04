@@ -13,9 +13,9 @@ export default function Navbar(props: Props) {
             {!title && <img src="/svg/homepage-logo.svg" className="h-6" />}
             {title && <div className="w-full flex items-center">
                 <div className="w-11/12">
-                    <p className="text-center">{title}</p>
+                    <p className="text-center font-semibold">{title}</p>
                 </div>
-                <div className="w-1/12 cursor-pointer bg-gray-light rounded-full w-6 h-6 flex items-center justify-center" onClick={()=> history('/login')}>
+                <div className="w-1/12 cursor-pointer bg-gray-light rounded-full w-6 h-6 flex items-center justify-center" onClick={()=> history(-1)}>
                     <i className="fas fa-times text-gray-500 text-btnBlack"></i>
                 </div>
             </div>
