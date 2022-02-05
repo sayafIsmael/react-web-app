@@ -21,7 +21,7 @@ export default function Secure() { //props: LoginProps
             password,
             confirmPassword
         }))
-        history('/create-account')
+        history('/dashboard')
     }
 
 
