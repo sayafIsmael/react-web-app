@@ -94,7 +94,7 @@ export default function Login() { //props: LoginProps
 
                             <div className="flex justify-center">
                                 <button className={`my-5 text-white px-5 py-2 rounded-lg flex items-center ${loginOption == 1 && values.email.length && isValid ? "bg-purplePrimary" : (loginOption == 2 && values.phone.length && isValid ? "bg-purplePrimary" : "bg-disabled")}`}
-                                    disabled={loginOption == 1 && values.email.length && isValid && isValid ? false : (loginOption == 2 && values.phone.length && isValid && isValid ? false : true)}
+                                    disabled={loginOption == 1 && values.email.length && isValid ? false : (loginOption == 2 && values.phone.length && isValid ? false : true)}
                                     type="submit"
                                 >
                                     Continue
