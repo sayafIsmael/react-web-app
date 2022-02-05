@@ -110,39 +110,39 @@ export default () => {
                 <div className="p-5">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                            <div class="flex-none w-14">
+                            <div className="flex-none w-14">
                                 <p className="mb-2 font-medium text-xl">Filter</p>
                             </div>
-                            <div class="shrink font-medium text-center">
+                            <div className="shrink font-medium text-center">
                                 <p className="bg-primary text-white w-6 h-6 rounded-full text-center" >{selected.length}</p>
                             </div>
                         </div>
                         <div className="cursor-pointer" onClick={() => setIsOpen(false)}>
-                            <i class="fas fa-times text-gray-500"></i>
+                            <i className="fas fa-times text-gray-500"></i>
                         </div>
                     </div>
                     <label className="flex my-4 items-center cursor-pointer" htmlFor="allexp">
-                        <div class="flex-none w-9">
+                        <div className="flex-none w-9">
                             <input className="bg-primary rounded" type="checkbox" id="allexp" name="allexp" value="" checked={allitems}
                                 onChange={(e) => selectAll(e)} />
                         </div>
-                        <div class="shrink w-64 font-medium text-">
+                        <div className="shrink w-64 font-medium text-">
                             <p className="cursor-pointer" htmlFor="allexp"> All Experiences </p>
                         </div>
                     </label>
 
                     {experiences.map((item, i) => <label key={i} className="flex my-4 items-center cursor-pointer" htmlFor={`allexp${item.id}`}>
                         {/* <label className="cursor-pointer" htmlFor={`allexp${item.id}`}> */}
-                            <div class="flex-none w-9">
+                            <div className="flex-none w-9">
                                 <input className="bg-primary rounded" type="checkbox" id={`allexp${item.id}`} name={`allexp${item.id}`} value={item.id}
                                     checked={allitems || selected.includes(item.id)}
                                     onChange={e => selectfilter(e, item)}
                                 />
                             </div>
-                            <div class="flex-none w-14">
+                            <div className="flex-none w-14">
                                 <img src={item.image} />
                             </div>
-                            <div class="shrink w-64 font-medium text-">
+                            <div className="shrink w-64 font-medium text-">
                                 <p className="cursor-pointer">{item.title}</p>
                             </div>
                         {/* </label> */}
