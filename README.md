@@ -12,6 +12,10 @@ I have used axios & axios-mock-adapter. You can find the code in "src/helpers/ap
 ![image](https://user-images.githubusercontent.com/45027528/152629438-b9acb8c2-8705-436f-b938-e5d9eeec6690.png)
 ![image](https://user-images.githubusercontent.com/45027528/152629338-6d9b40bb-227d-47d1-855a-40a385e0166f.png)
 
+### `Form Validation`
+![image](https://user-images.githubusercontent.com/45027528/152630175-50fbde29-fed2-49a2-b1dc-d372900fc2c2.png)
+![image](https://user-images.githubusercontent.com/45027528/152630153-d3fe6cef-324f-467a-b52b-c8f944284948.png)
+
 
 ## Available Scripts
 
