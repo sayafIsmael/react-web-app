@@ -44,7 +44,7 @@ export default function Create() { //props: LoginProps
                 <form className="mt-5">
                     <div>
                         <label className="text-gray-md">Full Name</label>
-                        <input className="w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 mt-2" placeholder='Ex: John doe'
+                        <input className="w-full border border-gray h-12 rounded-lg pl-5 mt-2" placeholder='Ex: John doe'
                             onChange={(e) => setFullname(e.target.value)} value={fullname}
                         />
                     </div>
