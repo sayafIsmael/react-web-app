@@ -85,12 +85,12 @@ export default function Login() { //props: LoginProps
                         <Form>
                             {loginOption == 1 && <Field id="email" name="email" placeholder='Ex: johndoe@gmail.com'
                                 className={`w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 ${errors.email && "border-danger"}`} />}
-                            <p className="text-danger mt-1 text-sm">{errors.email}</p>
+                            {loginOption == 1 && <p className="text-danger mt-1 text-sm">{errors.email}</p>}
 
                             {loginOption == 2 && <Field id="phone" name="phone"
                                 className={`w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 ${errors.phone && "border-danger"}`}
                                 placeholder='Ex (337) 378 8383' />}
-                            <p className="text-danger mt-1 text-sm">{errors.phone}</p>
+                            {loginOption == 2 && <p className="text-danger mt-1 text-sm">{errors.phone}</p>}
 
                             <div className="flex justify-center">
                                 <button className={`my-5 text-white px-5 py-2 rounded-lg flex items-center ${loginOption == 1 && values.email.length && isValid ? "bg-purplePrimary" : (loginOption == 2 && values.phone.length && isValid ? "bg-purplePrimary" : "bg-disabled")}`}
