@@ -4,6 +4,12 @@
 
 Runs the app in the production.\
 Open [https://react-web-app-five.vercel.app/](https://react-web-app-five.vercel.app/) to view it in the browser.
+![image](https://user-images.githubusercontent.com/45027528/152629406-c39bafff-15ff-4eba-a913-df27fd23aeaf.png)
+
+### `Mock Data`
+I have used axios & axios-mock-adapter. You can find the code in "src/helpers/api.tsx"\ 
+![image](https://user-images.githubusercontent.com/45027528/152629378-0fbde60f-e356-41b0-8b2c-8bd95c2e5d1a.png)
+![image](https://user-images.githubusercontent.com/45027528/152629338-6d9b40bb-227d-47d1-855a-40a385e0166f.png)
 
 
 ## Available Scripts
