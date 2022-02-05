@@ -55,11 +55,49 @@ export default function Login() { //props: LoginProps
         <React.Fragment>
             <Navbar />
             <div className="flex justify-center my-5">
-                <button className={`${loginOption == 1 ? "border-2 border-gray rounded-lg" : "text-gray-md"} py-1 px-3 mr-2`} onClick={() => setLoginOption(1)}>Email</button>
-                <button className={`${loginOption == 2 ? "border-2 border-gray rounded-lg" : "text-gray-md"} py-1 px-3`} onClick={() => setLoginOption(2)}>Phone</button>
+                <button className={`${loginOption == 1 ? "border-2 border-gray rounded-lg" : "text-gray-md"} py-1 px-3 mr-2`} onClick={() => { setLoginOption(1) }}>Email</button>
+                <button className={`${loginOption == 2 ? "border-2 border-gray rounded-lg" : "text-gray-md"} py-1 px-3`} onClick={() => { setLoginOption(2) }}>Phone</button>
             </div>
             <div className="mx-5 pt-2">
-                <Formik
+                {loginOption == 1 && <Formik
+                    initialValues={{ email, phone }}
+                    enableReinitialize
+                    onSubmit={(
+                        values: FormValues,
+                        { setSubmitting }: FormikHelpers<FormValues>
+                    ) => {
+                        setTimeout(() => {
+                            submitForm(values);
+                            setSubmitting(false);
+                        }, 500);
+                    }}
+                    validationSchema={validationSchema}
+                >
+                    {({
+                        values,
+                        errors,
+                        isValid,
+                        dirty,
+                    }) => (
+                        <Form>
+                            <Field id="email" name="email" placeholder='Ex: johndoe@gmail.com'
+                                className={`w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 ${errors.email && "border-danger"}`} />
+                            <p className="text-danger mt-1 text-sm">{errors.email}</p>
+
+                            <div className="flex justify-center">
+                                <button className={`my-5 text-white px-5 py-2 rounded-lg flex items-center ${values.email.length && !errors.email ? "bg-purplePrimary" : "bg-disabled"}`}
+                                    disabled={values.email.length && !errors.email ? false : true}
+                                    type="submit"
+                                >
+                                    Continue
+                                    <i className="fas fa-chevron-right pl-3"></i>
+                                </button>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>}
+
+                {loginOption == 2 && <Formik
                     initialValues={{
                         email,
                         phone
@@ -83,18 +121,14 @@ export default function Login() { //props: LoginProps
                         dirty,
                     }) => (
                         <Form>
-                            {loginOption == 1 && <Field id="email" name="email" placeholder='Ex: johndoe@gmail.com'
-                                className={`w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 ${errors.email && "border-danger"}`} />}
-                            {loginOption == 1 && <p className="text-danger mt-1 text-sm">{errors.email}</p>}
-
                             {loginOption == 2 && <Field id="phone" name="phone"
                                 className={`w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 ${errors.phone && "border-danger"}`}
                                 placeholder='Ex (337) 378 8383' />}
                             {loginOption == 2 && <p className="text-danger mt-1 text-sm">{errors.phone}</p>}
 
                             <div className="flex justify-center">
-                                <button className={`my-5 text-white px-5 py-2 rounded-lg flex items-center ${loginOption == 1 && values.email.length && !errors.email ? "bg-purplePrimary" : (loginOption == 2 && values.phone.length && !errors.phone ? "bg-purplePrimary" : "bg-disabled")}`}
-                                    disabled={loginOption == 1 && values.email.length && !errors.email ? false : (loginOption == 2 && values.phone.length && !errors.phone ? false : true)}
+                                <button className={`my-5 text-white px-5 py-2 rounded-lg flex items-center ${loginOption == 2 && values.phone.length && !errors.phone ? "bg-purplePrimary" : "bg-disabled"}`}
+                                    // disabled={loginOption == 1 && values.email.length && !errors.email ? false : (loginOption == 2 && values.phone.length && !errors.phone ? false : true)}
                                     type="submit"
                                 >
                                     Continue
@@ -103,7 +137,7 @@ export default function Login() { //props: LoginProps
                             </div>
                         </Form>
                     )}
-                </Formik>
+                </Formik>}
 
                 <p className="text-center mx-2 text-gray-md text-sm">by clicking continue you must agree to near labs
                     <span className="text-purplePrimary cursor-pointer"> Terms & Conditions </span> ans
