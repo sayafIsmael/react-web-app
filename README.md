@@ -3,9 +3,8 @@
 ### `Live link`
 
 Runs the app in the production.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [https://react-web-app-five.vercel.app/](https://react-web-app-five.vercel.app/) to view it in the browser.
 
-This project was bootstrapped with [Demo](https://react-web-app-five.vercel.app/).
 
 ## Available Scripts
 

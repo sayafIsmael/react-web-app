@@ -22,6 +22,7 @@ export default function Secure() { //props: LoginProps
             confirmPassword
         }))
         history('/dashboard')
+        localStorage.setItem("user", JSON.stringify(store.auth))
     }
 
 

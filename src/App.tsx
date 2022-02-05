@@ -18,6 +18,9 @@ import {
 // import your route components too
 
 function App() {
+
+  const user = localStorage.getItem("user")
+
   return (
     <div className={`max-w-sm container mx-auto`}>
       <BrowserRouter>
@@ -30,7 +33,7 @@ function App() {
           <Route path="/secure-account" element={<SecureAccountPage />} />
           <Route
             path="*"
-            element={<Navigate to="/login" />}
+            element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />}
           />
         </Routes>
       </BrowserRouter>
