@@ -14,8 +14,7 @@ I have used axios & axios-mock-adapter. You can find the code in "src/helpers/ap
 
 ### `Form Validation`
 ![image](https://user-images.githubusercontent.com/45027528/152630175-50fbde29-fed2-49a2-b1dc-d372900fc2c2.png)
-![image](https://user-images.githubusercontent.com/45027528/152630200-7b5983d8-521a-4320-883a-883f998295ae.png)
-
+![image](https://user-images.githubusercontent.com/45027528/152630217-7208d7b7-4496-435b-a26c-4d81d2783df9.png)
 
 ## Available Scripts
 
