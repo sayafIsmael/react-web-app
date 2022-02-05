@@ -3,7 +3,25 @@ import Navbar from "./../../components/NavBar";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './../../redux/reducers/rootReducer'
-import {handleLogin} from "./../../redux/actions/auth"
+import { handleLogin } from "./../../redux/actions/auth"
+
+import { Formik, Field, Form, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
+
+interface FormValues {
+    email: string;
+    phone: string;
+}
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string()
+        .email("Invalid email address"),
+    phone: Yup.string()
+        .matches(
+            /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+            "Phone number is not valid"
+        )
+})
 
 export default function Login() { //props: LoginProps
     const [email, setEmail] = useState('')
@@ -11,12 +29,13 @@ export default function Login() { //props: LoginProps
     const [loginOption, setLoginOption] = useState(1)
     const history = useNavigate();
     const dispatch = useDispatch()
-    
+
     const store = useSelector((state: RootState) => {
         return state.auth;
     });
 
-    function submitForm() {
+    function submitForm(data: FormValues) {
+        const { email, phone } = data
         dispatch(handleLogin({
             method: loginOption,
             email,
@@ -25,12 +44,12 @@ export default function Login() { //props: LoginProps
         history('/verification')
     }
 
-    useEffect(()=> {
-        let {email, phone, method} = store
+    useEffect(() => {
+        let { email, phone, method } = store
         setEmail(email)
         setPhone(phone)
         setLoginOption(method)
-    },[])
+    }, [])
 
     return (
         <React.Fragment>
@@ -40,22 +59,51 @@ export default function Login() { //props: LoginProps
                 <button className={`${loginOption == 2 ? "border-2 border-gray rounded-lg" : "text-gray-md"} py-1 px-3`} onClick={() => setLoginOption(2)}>Phone</button>
             </div>
             <div className="mx-5 pt-2">
-                {loginOption == 1 && <input className="w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5" placeholder='Ex: johndoe@gmail.com'
-                    onChange={e => setEmail(e.target.value)} value={email}
-                />}
-                {loginOption == 2 && <input className="w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5" placeholder='Ex (337) 378 8383'
-                    onChange={e => setPhone(e.target.value)} value={phone}
-                />}
+                <Formik
+                    initialValues={{
+                        email,
+                        phone
+                    }}
+                    enableReinitialize
+                    onSubmit={(
+                        values: FormValues,
+                        { setSubmitting }: FormikHelpers<FormValues>
+                    ) => {
+                        setTimeout(() => {
+                            submitForm(values);
+                            setSubmitting(false);
+                        }, 500);
+                    }}
+                    validationSchema={validationSchema}
+                >
+                    {({
+                        values,
+                        errors,
+                        isValid,
+                        dirty,
+                    }) => (
+                        <Form>
+                            {loginOption == 1 && <Field id="email" name="email" placeholder='Ex: johndoe@gmail.com'
+                                className={`w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 ${errors.email && "border-danger"}`} />}
+                            <p className="text-danger mt-1 text-sm">{errors.email}</p>
 
-                <div className="flex justify-center">
-                    <button className={`my-5 text-white px-5 py-2 rounded-lg flex items-center ${loginOption == 1 && email.length ? "bg-purplePrimary" : (loginOption == 2 && phone.length ? "bg-purplePrimary" : "bg-disabled")}`}
-                        disabled={loginOption == 1 && email.length ? false : (loginOption == 2 && phone.length ? false : true)}
-                        onClick={submitForm}
-                    >
-                        Continue
-                        <i className="fas fa-chevron-right pl-3"></i>
-                    </button>
-                </div>
+                            {loginOption == 2 && <Field id="phone" name="phone"
+                                className={`w-full border border-gray h-12 rounded-lg focus:border-purplePrimary pl-5 ${errors.phone && "border-danger"}`}
+                                placeholder='Ex (337) 378 8383' />}
+                            <p className="text-danger mt-1 text-sm">{errors.phone}</p>
+
+                            <div className="flex justify-center">
+                                <button className={`my-5 text-white px-5 py-2 rounded-lg flex items-center ${loginOption == 1 && values.email.length && isValid ? "bg-purplePrimary" : (loginOption == 2 && values.phone.length && isValid ? "bg-purplePrimary" : "bg-disabled")}`}
+                                    disabled={loginOption == 1 && values.email.length && isValid && isValid ? false : (loginOption == 2 && values.phone.length && isValid && isValid ? false : true)}
+                                    type="submit"
+                                >
+                                    Continue
+                                    <i className="fas fa-chevron-right pl-3"></i>
+                                </button>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
 
                 <p className="text-center mx-2 text-gray-md text-sm">by clicking continue you must agree to near labs
                     <span className="text-purplePrimary cursor-pointer"> Terms & Conditions </span> ans

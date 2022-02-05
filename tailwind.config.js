@@ -18,6 +18,7 @@ module.exports = {
       gray: '#BEBEC2',
       "gray-light": '#E5E5E5',
       "gray-md": '#9C9B9F',
+      danger: '#ff0000'
     }
   },
   variants: {
