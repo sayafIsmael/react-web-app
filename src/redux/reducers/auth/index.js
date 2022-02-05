@@ -5,22 +5,17 @@ const initialState = {
   phone: '',
   verificationCode: '',
   fullname: '',
-  accountId: ''
+  accountId: '',
+  password: '',
+  confirmPassword: ''
 }
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN':
-      console.log(action.data)
       return {
         ...state,
         ...action.data
-        // email: action.data.email,
-        // phone: action.data.phone,
-        // method: action.data.method,
-        // fullname: action.data.fullname,
-        // accountId: action.data.accountId,
-        // verificationCode: action.data.verificationCode
       }
     case 'LOGOUT':
       const obj = { ...action }
