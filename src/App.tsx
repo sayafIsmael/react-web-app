@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Navbar from "./components/NavBar"
 import LoginPage from "./pages/login/loginContainer"
 import VerificationPage from "./pages/verification"
 import DashboardPage from "./pages/dashboard"

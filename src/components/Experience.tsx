@@ -1,4 +1,14 @@
-export default ({ image, title, descriptiom, users }) => (
+
+interface Props {
+    image?: string;
+    title?: string;
+    descriptiom?: string;
+    users?: string
+}
+
+export default (props: Props) => {
+    let { image, title, descriptiom, users } = props
+    return (
     <div className="cursor-pointer flex my-4 items-center">
         <div className="w-3/12">
             <img src={image} />
@@ -12,4 +22,5 @@ export default ({ image, title, descriptiom, users }) => (
             <i className="fas fa-chevron-right text-gray-500"></i>
         </div>
     </div>
-);
+)
+};
